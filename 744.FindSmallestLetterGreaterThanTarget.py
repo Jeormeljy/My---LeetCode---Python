@@ -65,6 +65,7 @@ class Solution(object):
         :type target: str
         :rtype: str
         """
+        # consider a special case that no greater character
         if letters is None or len(letters) == 0:
             return None
         elif letters[len(letters) - 1] <= target:
