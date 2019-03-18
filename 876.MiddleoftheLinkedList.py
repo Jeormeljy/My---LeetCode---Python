@@ -40,6 +40,7 @@ The number of nodes in the given list will be between 1 and 100.
 #         self.val = x
 #         self.next = None
 
+# Solution 1
 class Solution(object):
     def middleNode(self, head):
         """
@@ -55,3 +56,23 @@ class Solution(object):
         for num in range(mid):
              head = head.next
         return head
+
+# Solution 2
+# Definition for singly-linked list.
+# class ListNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+class Solution(object):
+    def middleNode(self, head):
+        """
+        :type head: ListNode
+        :rtype: ListNode
+        """
+        slow = head
+        fast = head
+        while fast and fast.next:
+            slow = slow.next
+            fast = fast.next.next
+        return slow
