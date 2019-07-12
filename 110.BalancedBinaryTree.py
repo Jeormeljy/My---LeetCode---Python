@@ -78,9 +78,7 @@ class Solution(object):
         """
         if root is None:
             return True
-        left = self.getHeight(root.left)
-        right = self.getHeight(root.right)
-        return abs(left - right) <= 1 and left != -1 and right != -1
+        return self.getHeight(root) != -1
     def getHeight(self, root):
         if root is None:
             return 0
