@@ -41,7 +41,6 @@ The size of the given array will be in the range [1,1000].
 #         self.val = x
 #         self.left = None
 #         self.right = None
-
 class Solution(object):
     def constructMaximumBinaryTree(self, nums):
         """
@@ -60,5 +59,28 @@ class Solution(object):
         root.right = self.constructMaximumBinaryTree(nums[maxIdx + 1:len(nums)])
         return root
         
- # Solution 2
- 
+# Solution 2
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+class Solution(object):
+    def constructMaximumBinaryTree(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: TreeNode
+        """
+        if nums is None or len(nums) == 0:
+            return None
+        stack = []
+        for index in xrange(len(nums)):
+            cur = TreeNode(nums[index])
+            while stack and stack[-1].val < nums[index]:
+                cur.left = stack.pop()
+            if stack:
+                stack[-1].right = cur
+            stack.append(cur)
+        return None if not stack else stack[0]
+            
