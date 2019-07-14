@@ -59,3 +59,28 @@ class Solution(object):
         return result
         
 # Solution 2: Depth First Search
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+class Solution(object):
+    def levelOrderBottom(self, root):
+        """
+        :type root: TreeNode
+        :rtype: List[List[int]]
+        """
+        if root is None:
+            return []
+        result = []
+        self.helper(root, result, 0)
+        return result
+    def helper(self, root, result, level):
+        if root is None:
+            return
+        if level >= len(result):
+            result.insert(0, [])
+        self.helper(root.left, result, level + 1)
+        self.helper(root.right, result, level + 1)
+        result[len(result) - level - 1].append(root.val)
