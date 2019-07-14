@@ -79,7 +79,7 @@ class Solution(object):
     def helper(self, root, result, level):
         if root is None:
             return
-        if level >= len(result):
+        if level == len(result):
             result.insert(0, [])
         self.helper(root.left, result, level + 1)
         self.helper(root.right, result, level + 1)
