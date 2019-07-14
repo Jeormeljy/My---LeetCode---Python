@@ -66,6 +66,7 @@ class Solution(object):
 #         self.val = x
 #         self.left = None
 #         self.right = None
+
 class Solution(object):
     def constructMaximumBinaryTree(self, nums):
         """
@@ -75,12 +76,11 @@ class Solution(object):
         if nums is None or len(nums) == 0:
             return None
         stack = []
-        for index in xrange(len(nums)):
-            cur = TreeNode(nums[index])
-            while stack and stack[-1].val < nums[index]:
+        for num in nums:
+            cur = TreeNode(num)
+            while stack and stack[-1].val < num:
                 cur.left = stack.pop()
             if stack:
                 stack[-1].right = cur
             stack.append(cur)
-        return None if not stack else stack[0]
-            
+        return stack[0]
