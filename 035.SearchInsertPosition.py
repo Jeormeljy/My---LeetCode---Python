@@ -34,6 +34,7 @@ Output: 0
 
 """
 
+# Solution 1
 class Solution(object):
     def searchInsert(self, nums, target):
         """
@@ -54,4 +55,28 @@ class Solution(object):
             return right + 1
         if nums[left] < target:
             return left + 1
+        return left
+
+    # Solution 2
+    class Solution(object):
+    def searchInsert(self, nums, target):
+        """
+        :type nums: List[int]
+        :type target: int
+        :rtype: int
+        """
+        if nums is None or len(nums) == 0 or nums[0] > target:
+            return 0
+        elif nums[-1] < target:
+            return len(nums)
+        left = 0
+        right = len(nums) - 1
+        while left < right:
+            mid = (left + right) / 2
+            if nums[mid] == target:
+                return mid
+            elif nums[mid] < target:
+                left = mid + 1
+            else:
+                right = mid
         return left
